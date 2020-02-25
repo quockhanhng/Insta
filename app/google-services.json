@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "592146266640",
+    "firebase_url": "https://insta-af499.firebaseio.com",
+    "project_id": "insta-af499",
+    "storage_bucket": "insta-af499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592146266640:android:29c116896f9af79d0c2895",
+        "android_client_info": {
+          "package_name": "com.quockhanhng.training.insta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592146266640-p9ielore9mnr84cd12fo39g59qu83egb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quockhanhng.training.insta",
+            "certificate_hash": "2de8ff9ad932a87ee6b13cc9b976d0613b84b5ff"
+          }
+        },
+        {
+          "client_id": "592146266640-42ftqtkaem1srtoavcget3herc0258sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBlvn_SjKHlDgqr3ZmeM_sNTd1s_bFMhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592146266640-42ftqtkaem1srtoavcget3herc0258sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
