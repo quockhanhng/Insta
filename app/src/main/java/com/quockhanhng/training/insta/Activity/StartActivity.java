@@ -1,4 +1,4 @@
-package com.quockhanhng.training.insta;
+package com.quockhanhng.training.insta.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.quockhanhng.training.insta.R;
 
 public class StartActivity extends AppCompatActivity {
 
