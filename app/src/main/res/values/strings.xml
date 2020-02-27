@@ -11,4 +11,6 @@
     <string name="type_something_to_search">Type something to search</string>
     <string name="following">Following</string>
     <string name="follow">Follow</string>
+    <string name="post">POST</string>
+    <string name="description">Description</string>
 </resources>
