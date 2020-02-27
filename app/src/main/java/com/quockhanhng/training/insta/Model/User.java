@@ -4,7 +4,7 @@ public class User {
     private String id;
     private String username;
     private String fullName;
-    private String imgUrl;
+    private String imageUrl;
     private String bio;
 
     public User() {
@@ -14,7 +14,7 @@ public class User {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
-        this.imgUrl = imgUrl;
+        this.imageUrl = imgUrl;
         this.bio = bio;
     }
 
@@ -42,12 +42,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getBio() {

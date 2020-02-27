@@ -55,7 +55,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.btnFollow.setVisibility(View.VISIBLE);
         holder.txtUsername.setText(user.getUsername());
         holder.txtFullName.setText(user.getFullName());
-        Glide.with(mContext).load(user.getImgUrl()).into(holder.imgProfile);
+        Glide.with(mContext).load(user.getImageUrl()).into(holder.imgProfile);
         isFollowing(user.getId(), holder.btnFollow);
 
         if (user.getId().equals(firebaseUser.getUid())) {
