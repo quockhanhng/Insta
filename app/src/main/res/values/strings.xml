@@ -15,4 +15,8 @@
     <string name="description">Description</string>
     <string name="view_all_comments">View all comments</string>
     <string name="add_a_comment">Add a comment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo">Photo</string>
 </resources>
