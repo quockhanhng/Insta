@@ -64,6 +64,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         checkIsLiked(post.getPostId(), holder.like);
         setLikeNumber(post.getPostId(), holder.likes);
         getComments(post.getPostId(), holder.comments);
+        isSaved(post.getPostId(), holder.save);
+
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.save.getTag().equals("Save")) {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostId()).setValue(true);
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostId()).removeValue();
+                }
+            }
+        });
 
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +213,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     comment.setText(R.string.view_all_comments);
                 else
                     comment.setText("View all " + commentCount + " comments");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void isSaved(final String postId, final ImageView imageView) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(postId).exists()) {
+                    imageView.setImageResource(R.drawable.ic_save_black);
+                    imageView.setTag("Saved");
+                } else {
+                    imageView.setImageResource(R.drawable.ic_save);
+                    imageView.setTag("Save");
+                }
             }
 
             @Override
