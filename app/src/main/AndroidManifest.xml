@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.CommentActivity"></activity>
+        <activity android:name=".Activity.EditProfileActivity" />
+        <activity android:name=".Activity.CommentActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeDarkActionBar" />
         <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.RegisterActivity" />

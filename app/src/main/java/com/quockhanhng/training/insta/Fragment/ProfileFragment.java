@@ -1,6 +1,7 @@
 package com.quockhanhng.training.insta.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.quockhanhng.training.insta.Activity.EditProfileActivity;
 import com.quockhanhng.training.insta.Adapter.PhotoAdapter;
 import com.quockhanhng.training.insta.Model.Post;
 import com.quockhanhng.training.insta.Model.User;
@@ -235,6 +237,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void editProfile() {
+        startActivity(new Intent(getContext(), EditProfileActivity.class));
     }
 
     private void followUser() {
