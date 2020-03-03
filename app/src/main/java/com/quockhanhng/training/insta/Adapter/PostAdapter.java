@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quockhanhng.training.insta.Activity.CommentActivity;
+import com.quockhanhng.training.insta.Activity.FollowersActivity;
 import com.quockhanhng.training.insta.Fragment.PostDetailFragment;
 import com.quockhanhng.training.insta.Fragment.ProfileFragment;
 import com.quockhanhng.training.insta.Model.Post;
@@ -117,6 +118,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         holder.comment.setOnClickListener(onMessageClickListener(post));
         holder.comments.setOnClickListener(onMessageClickListener(post));
+
+        holder.likes.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, FollowersActivity.class);
+                intent.putExtra("id", post.getPostId());
+                intent.putExtra("title", "likes");
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

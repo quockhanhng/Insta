@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quockhanhng.training.insta.Activity.EditProfileActivity;
+import com.quockhanhng.training.insta.Activity.FollowersActivity;
 import com.quockhanhng.training.insta.Adapter.PhotoAdapter;
 import com.quockhanhng.training.insta.Model.Post;
 import com.quockhanhng.training.insta.Model.User;
@@ -139,6 +140,26 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 recyclerView.setVisibility(View.GONE);
                 recyclerView_Saved.setVisibility(View.VISIBLE);
+            }
+        });
+
+        tvFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileId);
+                intent.putExtra("title", "followers");
+                startActivity(intent);
+            }
+        });
+
+        tvFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileId);
+                intent.putExtra("title", "following");
+                startActivity(intent);
             }
         });
 
