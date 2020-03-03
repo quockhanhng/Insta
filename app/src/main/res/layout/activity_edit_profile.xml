@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/full_name"
-            app:met_floatingLabel="none" />
+            app:met_floatingLabel="highlight" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/username"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/username"
-            app:met_floatingLabel="none" />
+            app:met_floatingLabel="highlight" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/bio"
@@ -103,6 +103,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="Bio"
-            app:met_floatingLabel="none" />
+            app:met_floatingLabel="highlight" />
     </LinearLayout>
 </LinearLayout>

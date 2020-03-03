@@ -33,6 +33,7 @@ import com.quockhanhng.training.insta.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
@@ -144,6 +145,18 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    private void addFollowNotification() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notifications").child(profileId);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userId", firebaseUser.getUid());
+        hashMap.put("text", "started following you");
+        hashMap.put("postId", "");
+        hashMap.put("isPost", false);
+
+        ref.push().setValue(hashMap);
+    }
+
     private void userInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(profileId);
 
@@ -245,6 +258,8 @@ public class ProfileFragment extends Fragment {
                 .child("Following").child(profileId).setValue(true);
         FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId)
                 .child("Followers").child(firebaseUser.getUid()).setValue(true);
+
+        addFollowNotification();
     }
 
     private void unFollowUser() {

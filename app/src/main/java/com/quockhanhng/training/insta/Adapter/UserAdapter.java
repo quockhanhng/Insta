@@ -24,6 +24,7 @@ import com.quockhanhng.training.insta.Fragment.ProfileFragment;
 import com.quockhanhng.training.insta.Model.User;
 import com.quockhanhng.training.insta.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -82,6 +83,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                             .child("Following").child(user.getId()).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
                             .child("Followers").child(firebaseUser.getUid()).setValue(true);
+
+                    addFollowNotification(user.getId());
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("Following").child(user.getId()).removeValue();
@@ -130,5 +133,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
         });
+    }
+
+    private void addFollowNotification(String userId) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notifications").child(userId);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userId", firebaseUser.getUid());
+        hashMap.put("text", "started following you");
+        hashMap.put("postId", "");
+        hashMap.put("isPost", false);
+
+        ref.push().setValue(hashMap);
     }
 }

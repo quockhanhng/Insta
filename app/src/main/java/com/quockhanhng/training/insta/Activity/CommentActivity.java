@@ -1,12 +1,5 @@
 package com.quockhanhng.training.insta.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +7,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +27,6 @@ import com.quockhanhng.training.insta.Model.Comment;
 import com.quockhanhng.training.insta.Model.User;
 import com.quockhanhng.training.insta.R;
 
-import java.security.interfaces.DSAKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +41,7 @@ public class CommentActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private CommentAdapter commentAdapter;
-    private List<Comment>  commentList;
+    private List<Comment> commentList;
 
     FirebaseUser firebaseUser;
 
@@ -85,9 +83,9 @@ public class CommentActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edtComment.getText().toString().equals("")){
+                if (edtComment.getText().toString().equals("")) {
                     Toast.makeText(CommentActivity.this, "Write something first", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     postComment(edtComment.getText().toString());
                     commentAdapter.notifyDataSetChanged();
                 }
@@ -103,13 +101,14 @@ public class CommentActivity extends AppCompatActivity {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("comment", comment);
-        hashMap.put("publisher",  firebaseUser.getUid());
+        hashMap.put("publisher", firebaseUser.getUid());
 
         ref.push().setValue(hashMap);
+        addCommentNotification();
         edtComment.setText("");
     }
 
-    private void getImage(){
+    private void getImage() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -124,13 +123,14 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
     }
-    private void readComments(){
+
+    private void readComments() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Comments").child(postId);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 commentList.clear();
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Comment comment = snapshot.getValue(Comment.class);
                     commentList.add(comment);
                 }
@@ -143,5 +143,17 @@ public class CommentActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void addCommentNotification() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Notifications").child(publisherId);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userId", firebaseUser.getUid());
+        hashMap.put("text", "commented on your post: \"" + edtComment.getText().toString() + "\"");
+        hashMap.put("postId", postId);
+        hashMap.put("isPost", true);
+
+        ref.push().setValue(hashMap);
     }
 }
